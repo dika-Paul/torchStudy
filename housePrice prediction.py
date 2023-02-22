@@ -20,6 +20,8 @@ learning_rate = 0.00001
 
 a.cuda()
 b.cuda()
+x_train.cuda()
+y_train.cuda()
 
 for i in range(100000):
     prediction = a.expand_as(x_train) * x_train + b.expand_as(x_train)
@@ -31,6 +33,7 @@ for i in range(100000):
     b.grad.data.zero_()
 
 x_data = x_train.data.numpy()
+x_pre = x_test.data.numpy()
 plt.figure(figsize=(10, 8))
 xplot, = plt.plot(x_train.data.numpy(), y_train.data.numpy(), 'o')
 yplot, = plt.plot(x_data, a.data.numpy()*x_data + b.data.numpy())
